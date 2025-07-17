@@ -14,6 +14,10 @@ A clean and modern React TypeScript template with Tailwind CSS, ready to be clon
   - Missing key prop detection
   - TypeScript path resolution
 - **Prettier** for code formatting with format-on-save
+- **Husky + Lint-staged** for pre-commit hooks
+  - Auto-run ESLint --fix on staged files
+  - Auto-format with Prettier before commit
+  - Ensure code quality on every commit
 - **PostCSS** with Autoprefixer
 - **Axios** pre-configured with interceptors
 - **React Router DOM** for client-side routing
@@ -264,6 +268,52 @@ yarn check
 
 # Fix both linting and formatting issues
 yarn fix
+```
+
+### Husky + Lint-staged
+
+Pre-commit hooks are configured to automatically run linting and formatting on staged files before each commit.
+
+#### Configuration:
+
+**Husky** manages Git hooks:
+
+- `.husky/pre-commit` - Runs before each commit
+- Automatically installed via `prepare` script
+
+**Lint-staged** runs tasks on staged files only:
+
+```json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,css,md}": ["prettier --write"]
+  }
+}
+```
+
+#### How it works:
+
+1. **Before commit**: Husky triggers the pre-commit hook
+2. **Staged files only**: Lint-staged processes only files in staging area
+3. **Auto-fix**: ESLint fixes issues automatically where possible
+4. **Auto-format**: Prettier formats all staged files
+5. **Commit proceeds**: If all checks pass, commit continues
+6. **Commit blocked**: If unfixable errors exist, commit is prevented
+
+#### Benefits:
+
+- ✅ **Consistent code quality** - Every commit meets standards
+- ✅ **Automatic fixes** - No manual formatting needed
+- ✅ **Fast execution** - Only processes changed files
+- ✅ **Team consistency** - Same rules for all developers
+- ✅ **Prevents bad commits** - Blocks commits with linting errors
+
+#### Manual override (use sparingly):
+
+```bash
+# Skip pre-commit hooks (not recommended)
+git commit --no-verify -m "commit message"
 ```
 
 ### Prettier
