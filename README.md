@@ -7,7 +7,12 @@ A clean and modern React TypeScript template with Tailwind CSS, ready to be clon
 - **React 19** with TypeScript
 - **Vite** for fast development and building
 - **Tailwind CSS** for styling
-- **ESLint** for code linting
+- **ESLint** with advanced plugins for code quality
+  - Auto-remove unused imports
+  - Auto-sort imports alphabetically
+  - React hooks dependency checking
+  - Missing key prop detection
+  - TypeScript path resolution
 - **Prettier** for code formatting with format-on-save
 - **PostCSS** with Autoprefixer
 - **Axios** pre-configured with interceptors
@@ -40,51 +45,13 @@ src/
 
 This project is designed to be used as a base template for new React projects. Follow these steps to create a new independent project:
 
-#### Method 1: Download and Create New Repository (Recommended)
+#### To create a new project based on this template:
 
-1. **Download the template**:
-   - Click "Code" → "Download ZIP" from this repository
-   - Extract the ZIP file to your desired location
-   - Rename the folder to your new project name
+**Click the `Use this template` button on GitHub**:
 
-2. **Initialize new Git repository**:
-   ```bash
-   cd your-new-project-name
-   rm -rf .git  # Remove existing git history
-   git init     # Initialize new git repository
-   git add .
-   git commit -m "Initial commit from react-base-template"
-   ```
-
-3. **Create new GitHub repository**:
-   - Go to GitHub and create a new repository for your project
-   - **Don't** initialize with README, .gitignore, or license (we already have them)
-
-4. **Connect to your new repository**:
-   ```bash
-   git remote add origin https://github.com/your-username/your-new-project.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-#### Method 2: Use GitHub Template Feature
-
-If this repository is set up as a GitHub template:
-
-1. Click "Use this template" → "Create a new repository"
-2. Choose your repository name and settings
-3. Clone your new repository:
-   ```bash
-   git clone https://github.com/your-username/your-new-project.git
-   cd your-new-project
-   ```
-
-#### Method 3: Fork and Detach (Advanced)
-
-1. Fork this repository
-2. Clone your fork
-3. Remove the fork relationship (GitHub Settings → General → Delete this repository)
-4. This method keeps the commit history
+1.  Click "Create a new repository"
+2.  Input your "repository name"
+3.  Click "create repository"
 
 ### Prerequisites
 
@@ -128,6 +95,7 @@ After setting up the template, customize it for your specific project:
 #### Essential Updates
 
 1. **Update package.json**:
+
    ```json
    {
      "name": "your-project-name",
@@ -139,9 +107,10 @@ After setting up the template, customize it for your specific project:
    ```
 
 2. **Update index.html**:
+
    ```html
    <title>Your Project Name</title>
-   <meta name="description" content="Your project description">
+   <meta name="description" content="Your project description" />
    ```
 
 3. **Update README.md**:
@@ -192,10 +161,14 @@ yarn install
 
 - `yarn dev` - Start development server
 - `yarn build` - Build for production
-- `yarn lint` - Run ESLint
+- `yarn lint` - Run ESLint on entire project
 - `yarn lint:fix` - Run ESLint and fix issues automatically
+- `yarn lint:src` - Run ESLint only on src folder
+- `yarn lint:src:fix` - Run ESLint on src folder and fix issues
 - `yarn format` - Format code with Prettier
 - `yarn format:check` - Check code formatting with Prettier
+- `yarn check` - Run both lint and format check
+- `yarn fix` - Fix both lint and format issues
 - `yarn preview` - Preview production build
 
 ## 🎨 Styling
@@ -230,7 +203,68 @@ TypeScript configuration is split into:
 
 ### ESLint
 
-ESLint configuration is in `eslint.config.js` with React and TypeScript rules.
+ESLint configuration is in `eslint.config.js` with comprehensive React and TypeScript rules.
+
+#### Installed Plugins:
+
+- **eslint-plugin-import** - Import/export linting and auto-sorting
+- **eslint-plugin-unused-imports** - Auto remove unused imports
+- **eslint-plugin-react-hooks** - React hooks rules and dependency checking
+- **eslint-plugin-react** - React JSX rules and best practices
+- **eslint-import-resolver-typescript** - TypeScript path resolution
+
+#### Key Features:
+
+- ✅ **Auto-remove unused imports** - Keeps code clean
+- ✅ **Auto-sort imports** - Alphabetical order with proper grouping
+- ✅ **Missing key prop detection** - Prevents React rendering issues
+- ✅ **useEffect dependency checking** - Catches missing dependencies
+- ✅ **Array index key warnings** - Promotes better React patterns
+- ✅ **Import order enforcement** - Consistent import organization
+- ✅ **TypeScript path resolution** - Works with `@/` aliases
+
+#### ESLint Rules Configured:
+
+```javascript
+// Import rules
+'import/order': 'error',           // Auto-sort imports
+'import/no-unresolved': 'error',   // Check import paths
+'import/no-duplicates': 'error',   // Remove duplicate imports
+
+// Unused imports
+'unused-imports/no-unused-imports': 'error',  // Auto-remove unused
+'unused-imports/no-unused-vars': 'warn',      // Warn about unused vars
+
+// React hooks
+'react-hooks/rules-of-hooks': 'error',        // Hooks rules
+'react-hooks/exhaustive-deps': 'warn',        // useEffect deps
+
+// React JSX
+'react/jsx-key': 'error',                     // Missing key prop
+'react/no-array-index-key': 'warn',           // Array index as key
+```
+
+#### Usage Examples:
+
+```bash
+# Check for all linting issues
+yarn lint
+
+# Auto-fix what can be fixed automatically
+yarn lint:fix
+
+# Lint only source code (faster)
+yarn lint:src
+
+# Fix only source code
+yarn lint:src:fix
+
+# Check both linting and formatting
+yarn check
+
+# Fix both linting and formatting issues
+yarn fix
+```
 
 ### Prettier
 

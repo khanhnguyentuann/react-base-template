@@ -5,10 +5,11 @@ export const ROUTES = {
   NOT_FOUND: '*',
 } as const;
 
-// Route paths for navigation
+// Route paths for navigation (same as ROUTES for consistency)
 export const ROUTE_PATHS = {
   HOME: '/',
   LOGIN: '/login',
+  NOT_FOUND: '*',
 } as const;
 
 // Route names for display
