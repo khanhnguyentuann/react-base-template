@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { Header, Footer } from '@/components';
+import { Footer, Header } from '@/components';
 
-function DefaultLayout() {
+export default function DefaultLayout() {
   return (
     <div className='min-h-screen bg-gray-50'>
       <Header />
@@ -12,5 +12,3 @@ function DefaultLayout() {
     </div>
   );
 }
-
-export default DefaultLayout;

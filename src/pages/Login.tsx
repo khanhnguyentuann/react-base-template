@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/constants';
 
-function Login() {
+export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -297,5 +297,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 import { DefaultLayout } from '@/layouts';
 import { Home, Login, NotFound } from '@/pages';
 
-function AppRouter() {
+export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,5 +16,3 @@ function AppRouter() {
     </BrowserRouter>
   );
 }
-
-export default AppRouter;

@@ -1,4 +1,4 @@
-function Home() {
+export default function Home() {
   return (
     <div className='bg-gradient-to-br from-blue-50 to-indigo-100 py-16'>
       <div className='container mx-auto px-4'>
@@ -50,5 +50,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

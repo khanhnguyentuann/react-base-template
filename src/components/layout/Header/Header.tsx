@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/constants';
 
-function Header() {
+export default function Header() {
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -69,5 +69,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
